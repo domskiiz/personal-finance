@@ -2,27 +2,12 @@ import React, { Component } from 'react';
 import { Col, Nav, NavItem, Button, Modal } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
-import { addTransaction } from '../actions/index.js';
+import { addTransaction, closeModal, openModal } from '../actions/index.js';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.addTransaction = this.addTransaction.bind(this);
-
-    this.state = {
-      show: false
-    };
-  }
-
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
   }
 
   addTransaction() {
@@ -36,8 +21,8 @@ class Sidebar extends Component {
           <NavItem>Accounts</NavItem>
           <NavItem>Budgets</NavItem>
         </Nav>
-        <Button className="button-add" bsStyle="info" onClick={this.handleShow}>Add Transaction</Button>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Button className="button-add" bsStyle="info" onClick={() => this.props.openModal()}>Add Transaction</Button>
+        <Modal show={this.props.modalState} onHide={() => this.props.closeModal()}>
           <Modal.Header>
             <Modal.Title>New Transaction</Modal.Title>
           </Modal.Header>
@@ -46,7 +31,7 @@ class Sidebar extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button bsStyle="info" onClick={this.addTransaction}>Add Transaction</Button>
-            <Button onClick={this.handleClose}>Close</Button>
+            <Button onClick={() => this.props.closeModal()}>Close</Button>
           </Modal.Footer>
         </Modal>
       </Col>
@@ -56,13 +41,16 @@ class Sidebar extends Component {
 
 const mapStateToProps = state => {
   return {
-    transactions: state
+    transactions: state.transactionData,
+    modalState: state.modal.open
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTransaction: (transaction) => dispatch(addTransaction(transaction))
+    addTransaction: (transaction) => dispatch(addTransaction(transaction)),
+    closeModal: () => dispatch(closeModal()),
+    openModal: () => dispatch(openModal())
   };
 };
 

@@ -4,11 +4,11 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-import transactionReducer from './reducers/transactions.js';
+import reducers from './reducers/index.js';
 
 import App from './containers/App.js';
 
-let store = compose(applyMiddleware(logger))(createStore)(transactionReducer);
+let store = compose(applyMiddleware(logger))(createStore)(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
