@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Col, Nav, NavItem, Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
-import { closeModal, openModal } from '../actions/index.js';
+import { openModal } from '../actions/index.js';
 
 import TransactionModal from './modal.js';
 

@@ -16,20 +16,15 @@ export default class Ledger extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>03/10/18</td>
-              <td colSpan="3">Boba at Roule</td>
-              <td>Food</td>
-              <td>$4.75</td>
-              <td>$-4.75</td>
-            </tr>
-            <tr>
-              <td>03/10/18</td>
-              <td colSpan="3">Boba at Roule</td>
-              <td>Food</td>
-              <td>$4.75</td>
-              <td>$-4.75</td>
-            </tr>
+            {this.props.data.map((item) => {
+              return <tr key={item}>
+                <td>{item.date}</td>
+                <td colSpan="3">{item.description}</td>
+                <td>{item.category}</td>
+                <td>${item.amount}</td>
+                <td>$-4.75</td>
+              </tr>;
+            })}
           </tbody>
         </Table>
       </Col>

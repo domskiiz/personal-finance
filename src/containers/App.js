@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
-import { Grid, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-// Reducers and actions
-// import { addTransaction } from '../actions/index.js';
-// import transactionReducer from '../reducers/index.js';
+import { Grid, Row } from 'react-bootstrap';
 
 // Components
 import Sidebar from './sidebar.js';
 import Ledger from '../components/ledger.js';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <Grid fluid={true}>
         <Row>
           <Sidebar />
-          <Ledger />
+          <Ledger data={this.props.transactions} />
         </Row>
       </Grid>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    transactions: state.transactionData.transactions
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return { };
+};
+
+export default App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

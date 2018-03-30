@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, FormGroup, ControlLabel, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { addTransaction, closeModal } from '../actions/index.js';
@@ -7,12 +7,51 @@ import { addTransaction, closeModal } from '../actions/index.js';
 class TransactionModal extends Component {
   constructor(props) {
     super(props);
+
     this.addTransaction = this.addTransaction.bind(this);
+
+    this.state = {
+      amount: 0,
+      description: "",
+      category: "",
+      date: new Date()
+    };
   }
 
   addTransaction() {
-    this.props.addTransaction("hi");
+    this.props.addTransaction({
+      amount: this.state.amount,
+      description: this.state.description,
+      category: this.state.category,
+      date: this.state.date
+    });
+    this.props.closeModal();
   }
+
+  handleAmtChange(e) {
+    this.setState({ amount: e.target.value }, function() {
+      console.log(this.state);
+    });
+  }
+
+  handleDescChange(e) {
+    this.setState({ description: e.target.value }, function() {
+      console.log(this.state);
+    });
+  }
+
+  handleCategoryChange(e) {
+    this.setState({ category: e.target.value }, function() {
+      console.log(this.state);
+    });
+  }
+
+  handleDateChange(e) {
+    this.setState({ date: e.target.value }, function() {
+      console.log(this.state);
+    });
+  }
+
 
   render() {
     return(
@@ -21,7 +60,35 @@ class TransactionModal extends Component {
           <Modal.Title>New Transaction</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
+          <form>
+            <FormGroup>
+              <ControlLabel>Amount</ControlLabel>
+              <FormControl
+                type="number"
+                placeholder="Enter amount"
+                onChange={(e) => this.handleAmtChange(e)}
+              />
+              <FormControl
+                type="text"
+                placeholder="Description"
+                onChange={(e) => this.handleDescChange(e)}
+              />
+              <FormControl
+                type="text"
+                placeholder="Category"
+                onChange={(e) => this.handleCategoryChange(e)}
+              />
+              <InputGroup>
+                <FormControl
+                  type="date"
+                  onChange={(e) => this.handleDateChange(e)}
+                />
+                <InputGroup.Addon>
+                  <Glyphicon glyph="calendar" />
+                </InputGroup.Addon>
+              </InputGroup>
+            </FormGroup>
+          </form>
         </Modal.Body>
         <Modal.Footer>
           <Button bsStyle="info" onClick={this.addTransaction}>Add Transaction</Button>
