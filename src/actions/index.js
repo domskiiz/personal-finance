@@ -18,3 +18,22 @@ export function closeModal() {
     type: types.CLOSE_MODAL,
   };
 }
+
+export function openAccModal() {
+  return {
+    type: types.OPEN_ACCOUNT_MODAL,
+  };
+}
+
+export function closeAccModal() {
+  return {
+    type: types.CLOSE_ACCOUNT_MODAL,
+  };
+}
+
+export function addAccount(account) {
+  return {
+    type: types.ADD_ACCOUNT,
+    account
+  };
+}

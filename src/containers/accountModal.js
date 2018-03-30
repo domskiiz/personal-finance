@@ -1,0 +1,100 @@
+import React, { Component } from 'react';
+import { Button, Modal, FormGroup, FormControl, Checkbox } from 'react-bootstrap';
+
+import { connect } from 'react-redux';
+import { addAccount, closeAccModal } from '../actions/index.js';
+
+class AccountModal extends Component {
+  constructor(props) {
+    super(props);
+    this.addAccount = this.addAccount.bind(this);
+
+    this.state = {
+      name: "",
+      balance: 0,
+      credit: false,
+    };
+  }
+
+  addAccount() {
+    // this.props.addAccount({
+    //   name: this.state.name,
+    //   balance: this.state.balance,
+    //   type: this.state.type,
+    // });
+    console.log(this.state);
+    this.props.closeModal();
+  }
+
+  handleNameChange(e) {
+    this.setState({ name: e.target.value }, function() {
+      console.log(this.state);
+    });
+  }
+
+  handleBalanceChange(e) {
+    this.setState({ balance: e.target.value }, function() {
+      console.log(this.state);
+    });
+  }
+
+  handleChange(e) {
+    this.setState({ credit: e.target.checked }, function() {
+      console.log(this.state);
+    });
+  }
+
+  render() {
+    return(
+      <Modal show={this.props.modalState} onHide={() => this.props.closeModal()}>
+        <Modal.Header>
+          <Modal.Title>New Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <FormGroup>
+              <FormControl
+                type="text"
+                placeholder="Name"
+                onChange={(e) => this.handleNameChange(e)}
+              />
+              <FormControl
+                type="number"
+                placeholder="Balance"
+                onChange={(e) => this.handleBalanceChange(e)}
+              />
+              <Checkbox
+                checked={this.state.credit}
+                onChange={(e) => this.handleChange(e)}
+              >
+                Credit Account
+              </Checkbox>
+            </FormGroup>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button bsStyle="info" onClick={this.addAccount}>Add Account</Button>
+          <Button onClick={() => this.props.closeModal()}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    modalState: state.modal.accModalOpen
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addAccount: (account) => dispatch(addAccount(account)),
+    closeModal: () => dispatch(closeAccModal())
+  };
+};
+
+export default AccountModal = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AccountModal);
