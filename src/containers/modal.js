@@ -14,7 +14,7 @@ class TransactionModal extends Component {
       amount: 0,
       description: "",
       category: "",
-      date: new Date()
+      date: ""
     };
   }
 

@@ -28,9 +28,7 @@ const mapStateToProps = state => {
     var account = state.accounts.find(function(acc) {
       return acc.active === true;
     });
-    console.log(account.transactions);
     transactionArray = account.transactions;
-    console.log(transactionArray);
   }
   return {
     transactions: transactionArray
