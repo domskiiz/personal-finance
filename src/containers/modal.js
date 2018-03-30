@@ -29,27 +29,19 @@ class TransactionModal extends Component {
   }
 
   handleAmtChange(e) {
-    this.setState({ amount: e.target.value }, function() {
-      console.log(this.state);
-    });
+    this.setState({ amount: e.target.value });
   }
 
   handleDescChange(e) {
-    this.setState({ description: e.target.value }, function() {
-      console.log(this.state);
-    });
+    this.setState({ description: e.target.value });
   }
 
   handleCategoryChange(e) {
-    this.setState({ category: e.target.value }, function() {
-      console.log(this.state);
-    });
+    this.setState({ category: e.target.value });
   }
 
   handleDateChange(e) {
-    this.setState({ date: e.target.value }, function() {
-      console.log(this.state);
-    });
+    this.setState({ date: e.target.value });
   }
 
 

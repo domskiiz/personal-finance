@@ -17,31 +17,25 @@ class AccountModal extends Component {
   }
 
   addAccount() {
-    // this.props.addAccount({
-    //   name: this.state.name,
-    //   balance: this.state.balance,
-    //   type: this.state.type,
-    // });
+    this.props.addAccount({
+      name: this.state.name,
+      balance: Number(this.state.balance),
+      credit: this.state.credit,
+    });
     console.log(this.state);
     this.props.closeModal();
   }
 
   handleNameChange(e) {
-    this.setState({ name: e.target.value }, function() {
-      console.log(this.state);
-    });
+    this.setState({ name: e.target.value });
   }
 
   handleBalanceChange(e) {
-    this.setState({ balance: e.target.value }, function() {
-      console.log(this.state);
-    });
+    this.setState({ balance: e.target.value });
   }
 
   handleChange(e) {
-    this.setState({ credit: e.target.checked }, function() {
-      console.log(this.state);
-    });
+    this.setState({ credit: e.target.checked });
   }
 
   render() {

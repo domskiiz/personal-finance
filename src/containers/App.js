@@ -21,8 +21,19 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  var transactionArray;
+  if (state.accounts.length === 0)
+    transactionArray = [];
+  else {
+    var account = state.accounts.find(function(acc) {
+      return acc.active === true;
+    });
+    console.log(account.transactions);
+    transactionArray = account.transactions;
+    console.log(transactionArray);
+  }
   return {
-    transactions: state.transactionData.transactions
+    transactions: transactionArray
   };
 };
 
