@@ -16,8 +16,8 @@ export default class Ledger extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.data.map((item) => {
-              return <tr key={item}>
+            {this.props.data.map((item, i) => {
+              return <tr key={i}>
                 <td>{item.date}</td>
                 <td colSpan="3">{item.description}</td>
                 <td>{item.category}</td>

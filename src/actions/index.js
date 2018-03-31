@@ -37,3 +37,10 @@ export function addAccount(account) {
     account
   };
 }
+
+export function setVisibility(account) {
+  return {
+    type: types.SET_VISIBLE_ACCOUNT,
+    account
+  };
+}
