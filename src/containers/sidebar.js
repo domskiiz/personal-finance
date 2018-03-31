@@ -38,7 +38,7 @@ class Sidebar extends Component {
           className="button-add"
           onClick={() => this.props.openModal()}
         >
-          Add Transaction
+          + Add Transaction
         </Button>
         <TransactionModal />
         <AccountModal />

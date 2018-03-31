@@ -5,9 +5,12 @@ export default class Ledger extends Component {
   render() {
     return(
       <Col sm={9} className="ledger">
+        <div className="header">
+          {this.props.header}
+        </div>
         <Table responsive >
           <thead>
-            <tr>
+            <tr class="table=">
               <th>Date</th>
               <th colSpan="3">Description</th>
               <th>Category</th>
@@ -17,7 +20,7 @@ export default class Ledger extends Component {
           </thead>
           <tbody>
             {this.props.data.map((item, i) => {
-              return <tr key={i}>
+              return <tr class="table-entry" key={i}>
                 <td>{item.date}</td>
                 <td colSpan="3">{item.description}</td>
                 <td>{item.category}</td>
