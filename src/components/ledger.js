@@ -4,7 +4,7 @@ import { Table, Col } from 'react-bootstrap';
 export default class Ledger extends Component {
   render() {
     return(
-      <Col sm={10} className="ledger">
+      <Col sm={9} className="ledger">
         <Table responsive >
           <thead>
             <tr>

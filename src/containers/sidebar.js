@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Nav, NavItem, Button, SplitButton, MenuItem } from 'react-bootstrap';
+import { Col, Nav, NavItem, Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { openModal, openAccModal, setVisibility } from '../actions/index.js';
@@ -10,36 +10,36 @@ import AccountModal from './accountModal.js';
 class Sidebar extends Component {
   render() {
     return(
-      <Col sm={2} className="sidebar">
-        <Nav stacked>
-          <NavItem>
-            <SplitButton
-              title="Accounts"
-              id={"split-button-basic-1"}
-            >
-              {this.props.accounts.map((account, i) => {
-                return <MenuItem
-                  key={i}
-                  onClick={() => this.props.setVisibility(account.name)}
-                >
-                  {account.name}
-                </MenuItem>;
-              })}
-              <MenuItem divider />
-              <MenuItem onClick={() => this.props.openAccModal()} >
-                Add Account
-              </MenuItem>
-            </SplitButton>
-          </NavItem>
-          <NavItem>
-            <SplitButton
-              title="Budgets"
-              id={"split-button-basic-1"}
-            >
-            </SplitButton>
-          </NavItem>
+      <Col sm={3} className="sidebar">
+        <Nav stacked >
+          <div className="sidebar-section">
+            <div className="sidebar-navheader">
+              ACCOUNTS
+            </div>
+            {this.props.accounts.map((account, i) => {
+              return <NavItem className="sidebar-navitem"
+                key={i}
+                onClick={() => this.props.setVisibility(account.name)}
+              >
+                {account.name}
+              </NavItem>;
+            })}
+            <NavItem className="add-button" onClick={() => this.props.openAccModal()}>
+              + Add Account
+            </NavItem>
+          </div>
+          <div className="sidebar-section">
+            <div className="sidebar-navheader">
+              BUDGETS
+            </div>
+          </div>
         </Nav>
-        <Button className="button-add" bsStyle="info" onClick={() => this.props.openModal()}>Add Transaction</Button>
+        <Button
+          className="button-add"
+          onClick={() => this.props.openModal()}
+        >
+          Add Transaction
+        </Button>
         <TransactionModal />
         <AccountModal />
       </Col>
