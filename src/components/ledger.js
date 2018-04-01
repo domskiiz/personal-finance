@@ -6,7 +6,14 @@ export default class Ledger extends Component {
     return(
       <Col sm={9} className="ledger">
         <div className="header">
-          {this.props.header}
+          {this.props.account.name}
+          &emsp;
+          <span className="balance-indicator-lg">
+            {this.props.account.balance < 0
+              ? "-$" + Math.abs(this.props.account.balance)
+              : "$" + this.props.account.balance
+            }
+          </span>
         </div>
         <Table responsive >
           <thead>
@@ -20,7 +27,7 @@ export default class Ledger extends Component {
           </thead>
           <tbody>
             {this.props.data.map((item, i) => {
-              return <tr class="table-entry" key={i}>
+              return <tr className="table-entry" key={i}>
                 <td>{item.date}</td>
                 <td colSpan="3">{item.description}</td>
                 <td>{item.category}</td>

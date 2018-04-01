@@ -13,7 +13,7 @@ class App extends Component {
       <Grid fluid={true}>
         <Row>
           <Sidebar />
-          <Ledger header={this.props.active} data={this.props.transactions} />
+          <Ledger account={this.props.active} data={this.props.transactions} />
         </Row>
       </Grid>
     );
@@ -32,7 +32,7 @@ const mapStateToProps = state => {
       return acc.active === true;
     });
     transactionArray = account.transactions;
-    active = account.name;
+    active = account;
   }
   return {
     transactions: transactionArray,

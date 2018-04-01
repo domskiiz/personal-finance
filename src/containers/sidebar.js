@@ -22,6 +22,10 @@ class Sidebar extends Component {
                 onClick={() => this.props.setVisibility(account.name)}
               >
                 {account.name}
+                &emsp; &emsp;
+                <span className="balance-indicator">
+                  {account.balance < 0 ? "-$" + Math.abs(account.balance) : "$" + account.balance}
+                </span>
               </NavItem>;
             })}
             <NavItem className="add-button" onClick={() => this.props.openAccModal()}>

@@ -42,10 +42,21 @@ html {
 .sidebar-navitem {
   color: var(--main-text-color);
   margin-bottom: 1em;
+  font-size: 16px;
 }
 
 .sidebar-section {
   margin-bottom: 2em;
+}
+
+.balance-indicator {
+  font-size: 12px;
+  color: var(--hover-purple);
+}
+
+.balance-indicator-lg {
+  font-size: 16px;
+  color: var(--purple);
 }
 
 .add-button {
