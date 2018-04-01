@@ -59,10 +59,6 @@ html {
   color: var(--purple);
 }
 
-.add-button {
-  color: var(--purple);
-}
-
 .sidebar-navheader {
   font-family: 'IBM Plex Sans', sans-serif;
   margin-bottom: 1em;
@@ -74,7 +70,7 @@ html {
 }
 
 .btn-default, .btn-default:active, .btn-default:visited {
-  background-color: #ffffff;
+  background-color: #dfe6e9;
   background-image: none;
   text-shadow: none;
   border: 0px solid black;
@@ -125,4 +121,43 @@ table {
 .table-header {
   font-family: 'IBM Plex Sans', sans-serif;
   color: var(--subheader-color);
+}
+
+.form-group {
+  padding-left: 1.2em;
+}
+
+.add-button {
+  color: var(--purple);
+}
+
+
+.form-control {
+  border: 0px;
+  border-bottom: 1px solid #dfe6e9;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border-radius: 0;
+  width: 90%;
+  margin-bottom: 2em;
+  padding-left: 0.5em;
+}
+
+.form-control:focus {
+  border-bottom-color: var(--hover-purple);
+  box-shadow: none;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding: 2em 3em;
+  padding-bottom: 1em;
+}
+
+.checkbox {
+  color: var(--main-text-color);
+}
+
+.radio-inline {
+  color: var(--main-text-color);
 }

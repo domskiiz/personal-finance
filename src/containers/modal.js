@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, FormGroup, ControlLabel, FormControl, InputGroup, Glyphicon, Radio } from 'react-bootstrap';
+import { Button, Modal, FormGroup, FormControl, InputGroup, Radio } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { addTransaction, closeModal } from '../actions/index.js';
@@ -75,10 +75,9 @@ class TransactionModal extends Component {
         <Modal.Body>
           <form>
             <FormGroup>
-              <ControlLabel>Amount</ControlLabel>
               <FormControl
                 type="number"
-                placeholder="Enter amount"
+                placeholder="Amount"
                 onChange={(e) => this.handleAmtChange(e)}
               />
               <FormGroup>
@@ -104,15 +103,12 @@ class TransactionModal extends Component {
                   type="date"
                   onChange={(e) => this.handleDateChange(e)}
                 />
-                <InputGroup.Addon>
-                  <Glyphicon glyph="calendar" />
-                </InputGroup.Addon>
               </InputGroup>
             </FormGroup>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="info" onClick={this.addTransaction}>Add Transaction</Button>
+          <Button className="button-add" onClick={this.addTransaction}>Add Transaction</Button>
           <Button onClick={() => this.props.closeModal()}>Close</Button>
         </Modal.Footer>
       </Modal>

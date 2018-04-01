@@ -30,6 +30,11 @@ class AccountModal extends Component {
     });
     console.log(this.state);
     this.props.closeModal();
+    this.setState = {
+      name: "",
+      balance: 0,
+      credit: false,
+    };
   }
 
   handleNameChange(e) {
@@ -73,7 +78,7 @@ class AccountModal extends Component {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="info" onClick={this.addAccount}>Add Account</Button>
+          <Button className="button-add" onClick={this.addAccount}>Add Account</Button>
           <Button onClick={() => this.props.closeModal()}>Close</Button>
         </Modal.Footer>
       </Modal>
