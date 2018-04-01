@@ -17,9 +17,15 @@ class AccountModal extends Component {
   }
 
   addAccount() {
+    var balance;
+    if (this.state.credit) {
+      balance = Math.abs(Number(this.state.balance)) * -1;
+    } else {
+      balance = Math.abs(Number(this.state.balance));
+    }
     this.props.addAccount({
       name: this.state.name,
-      balance: Math.abs(Number(this.state.balance)) * -1,
+      balance: balance,
       credit: this.state.credit,
     });
     console.log(this.state);

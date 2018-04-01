@@ -10,7 +10,7 @@ export default class Ledger extends Component {
         </div>
         <Table responsive >
           <thead>
-            <tr class="table=">
+            <tr class="table">
               <th>Date</th>
               <th colSpan="3">Description</th>
               <th>Category</th>
@@ -25,7 +25,7 @@ export default class Ledger extends Component {
                 <td colSpan="3">{item.description}</td>
                 <td>{item.category}</td>
                 <td>${item.amount}</td>
-                <td>$-4.75</td>
+                <td>${item.runningBalance}</td>
               </tr>;
             })}
           </tbody>

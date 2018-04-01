@@ -1,4 +1,5 @@
 import * as types from '../actions/types.js';
+import { getFormattedDate } from '../utilities.js';
 
 var initialState = [];
 
@@ -11,7 +12,15 @@ export default function accountsReducer(state = initialState, action) {
     newState.forEach(function(acc) {
       acc.active = false;
     });
-    var newAccount = Object.assign({}, action.account, { transactions: [] }, { active: true });
+    var today = getFormattedDate();
+    var entryTransaction = {
+      amount: action.account.balance,
+      description: "Starting balance",
+      category: "",
+      date: today,
+      runningBalance: action.account.balance
+    };
+    var newAccount = Object.assign({}, action.account, { transactions: [entryTransaction] }, { active: true });
     newState.push(newAccount);
     return newState;
 
@@ -23,8 +32,12 @@ export default function accountsReducer(state = initialState, action) {
     });
     var transactionArray = [...account.transactions];
 
-    // Add new transaction to the front of array
+    // Adjust account's running balance
     var newTransaction = action.entry;
+    account.balance += newTransaction.amount;
+    newTransaction = Object.assign(newTransaction, { runningBalance: account.balance });
+
+    // Add new transaction to the front of array
     transactionArray.unshift(newTransaction);
 
     // Update account with new transaction array

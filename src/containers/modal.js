@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Modal, FormGroup, ControlLabel, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
+import { Button, Modal, FormGroup, ControlLabel, FormControl, InputGroup, Glyphicon, Radio } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { addTransaction, closeModal } from '../actions/index.js';
+import { getFormattedDate } from '../utilities.js';
 
 class TransactionModal extends Component {
   constructor(props) {
@@ -14,18 +15,30 @@ class TransactionModal extends Component {
       amount: 0,
       description: "",
       category: "",
-      date: ""
+      date: null,
+      positive: false
     };
   }
 
   addTransaction() {
+    var amount = Math.abs(this.state.amount);
+    if (!this.state.positive) {
+      amount *= -1;
+    }
     this.props.addTransaction({
-      amount: this.state.amount,
+      amount: amount,
       description: this.state.description,
       category: this.state.category,
-      date: this.state.date
+      date: this.state.date || getFormattedDate()
     });
     this.props.closeModal();
+    this.setState({
+      amount: 0,
+      description: "",
+      category: "",
+      date: null,
+      positive: false
+    });
   }
 
   handleAmtChange(e) {
@@ -44,6 +57,14 @@ class TransactionModal extends Component {
     this.setState({ date: e.target.value });
   }
 
+  handlePlus(e) {
+    this.setState({ positive: true });
+  }
+
+  handleMinus(e) {
+    this.setState({ positive: false });
+  }
+
 
   render() {
     return(
@@ -60,6 +81,14 @@ class TransactionModal extends Component {
                 placeholder="Enter amount"
                 onChange={(e) => this.handleAmtChange(e)}
               />
+              <FormGroup>
+                <Radio onClick={(e) => this.handlePlus(e)} name="radioGroup" inline>
+                  +
+                </Radio>{' '}
+                <Radio onClick={(e) => this.handleMinus(e)} name="radioGroup" inline>
+                  -
+                </Radio>{' '}
+              </FormGroup>
               <FormControl
                 type="text"
                 placeholder="Description"
